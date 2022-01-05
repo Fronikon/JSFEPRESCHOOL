@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Merriweather";
+    src: url("assets/fonts/Merriweather/Merriweather-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf");
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Verdana", sans-serif;
+    font-size: 20px;
+}
+
+.title {
+    font-family: "Merriweather", Georgia, serif;
+    font-weight: bold;
+}
