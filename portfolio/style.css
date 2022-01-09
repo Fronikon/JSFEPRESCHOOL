@@ -41,7 +41,7 @@ body {
 }
 
 .container {
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -75,6 +75,7 @@ body {
 
 .button:hover {
     color: #ffffff;
+    transition: 0.3s;
 }
 
 .header_container {
@@ -360,4 +361,53 @@ body {
     margin-bottom: 30px;
     resize: none;
     height: 100px;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    line-height: 50px;
+}
+
+.copyright {
+    display: flex;
+    gap: 20px;
+}
+
+.footer_rsschool {
+    padding-left: 20px;
+}
+
+.footer_links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer_link {
+    display: flex;
+    align-items: center;
+}
+
+.footer_link .icon {
+    padding: 16px;
+    background-repeat: no-repeat;
+}
+
+.inst {
+    background-image: url("./assets/swg/inst.svg");
+}
+
+.fb {
+    background-image: url("./assets/swg/fb.svg");
+}
+
+.tw {
+    background-image: url("./assets/swg/tw.svg");
+}
+
+.pinterest {
+    background-image: url("./assets/swg/pinterest.svg");
 }
