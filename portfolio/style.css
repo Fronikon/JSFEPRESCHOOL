@@ -17,7 +17,11 @@ li {
 }
 
 body,
-ul {
+ul,
+h1,
+h2,
+h3,
+p {
     margin: 0;
     padding: 0;
 }
@@ -30,20 +34,16 @@ a {
 body {
     font-family: "Inter", "Verdana", sans-serif;
     font-size: 20px;
+    line-height: 40px;
     font-weight: 400;
     color: #ffffff;
     background-color: #000;
 }
 
-.title {
-    font-family: "Merriweather", Georgia, serif;
-    font-weight: bold;
-}
-
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .link:hover {
@@ -57,16 +57,38 @@ body {
     transition: 0.3s;
 }
 
+.button {
+    height: 55px;
+    width: 220px;
+    border: 0;
+    background-color: #bdae82;
+    font-family: inherit;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.button_hollow {
+    background-color: transparent;
+    border: 2px solid #bdae82;
+    color: #bdae82;
+}
+
+.button:hover {
+    color: #ffffff;
+}
+
 .header_container {
     display: flex;
     justify-content: flex-end;
-    background: url('./assets/img/header-bg.jpg');
+    align-items: center;
+    background: url("./assets/img/header-bg.jpg");
     background-repeat: no-repeat;
     background-position: center 0;
+    height: 90px;
 }
 
 .header_logo {
-    background-image: url('./assets/swg/header-logo.svg');
+    background-image: url("./assets/swg/header-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;  
     padding: 25px;
@@ -101,4 +123,241 @@ body {
 
 .switch_en {
     color: #BDAE82;
+}
+
+
+.hero_container {
+    background-image: url("./assets/img/header-bg.jpg");
+    background-position: center -90px;
+    background-repeat: no-repeat;
+    height: 820px;
+}
+
+.hero_content {
+    height: 330px;
+    width: 500px;
+    margin-left: 60px;
+    padding-top: 160px;
+    padding-right: 30px;
+}
+
+.hero_title {
+    font-family: "Merriweather", Georgia, serif;
+    font-weight: bold;
+    line-height: 120px;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.hero_text {
+    margin-bottom: 25px;
+}
+
+.hero,
+.skills,
+.portfolio,
+.video,
+.prices {
+    margin-bottom: 100px;
+}
+
+.section_wrapper {
+    width: 50%;
+    margin: 0 auto 60px auto;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.section_title {
+    color: #BDAE82;
+    position: relative;
+    display: inline;
+    font-family: "Merriweather", Georgia, serif;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 80px;
+}
+
+.section_title::before,
+.section_title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    background-color: #BDAE82;
+    width: 500px;
+    height: 2px;
+}
+
+.section_title::before {
+    left: -520px;
+}
+
+.section_title::after {
+    right: -520px;
+}
+
+.skills_items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.skill_item {
+    padding: 100px 20px 8px 20px;
+    margin-bottom: 2px;
+    width: 320px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.skill_name {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.skill_text {
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.skill_item:nth-child(1) {
+    background-image: url("./assets/swg/camera.svg");
+    background-size: 62px 50px;
+}
+
+.skill_item:nth-child(2) {
+    background-image: url("./assets/swg/video.svg");
+    background-size: 62px 50px;
+}
+
+.skill_item:nth-child(3) {
+    background-image: url("./assets/swg/image.svg");
+    background-size: 62px 50px;
+}
+
+.skill_item:nth-child(4) {
+    background-image: url("./assets/swg/mic.svg");
+    background-size: 62px 50px;
+}
+
+.portfolio_menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 60px;
+}
+
+.portfolio_photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.video_player {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./assets/img/video-player.jpg");
+    height: 705px;
+}
+
+.prices_items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.play_hover {
+    position: absolute;
+}
+
+.price_item {
+    text-align: center;
+    border: 3px solid #BDAE82;
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.price_title {
+    font-family: "Merriweather", Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 56px;
+    margin-bottom: 20px;
+}
+
+.price_number {
+    font-family: "Merriweather", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 48px;
+    color: #BDAE82;
+    margin-bottom: 20px;
+}
+
+.price_text {
+    font-size: 18px;
+    line-height: 36px;
+    margin-bottom: 40px;
+}
+
+.price_string {
+    display: block;
+}
+
+.contact_container {
+    background-image: url("./assets/img/contacts.jpg");
+    background-repeat: no-repeat;
+    height: 700px;
+}
+
+.contact_content {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    width: 450px;
+    padding-top: 60px;
+}
+
+.contact_content ::placeholder {
+    font-family: inherit;
+    color: #bdae82;
+    font-size: 20px;
+}
+
+.contact_title {
+    font-family: "Merriweather", Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 80px;
+    color: #BDAE82;
+    margin-bottom: 40px;
+}
+
+.message {
+    background-color: #00000080;
+    border: 2px solid #bdae82;
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 40px;
+    color: #ffffff;
+    padding: 5px 20px;
+}
+
+.contact_email,
+.contact_tel {
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.contact_message {
+    margin-bottom: 30px;
+    resize: none;
+    height: 100px;
 }
