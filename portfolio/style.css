@@ -37,7 +37,7 @@ body {
     line-height: 40px;
     font-weight: 400;
     color: #ffffff;
-    background-color: #000;
+    background-color: #000000;
 }
 
 .container {
@@ -89,7 +89,7 @@ body {
 }
 
 .header_logo {
-    background-image: url("./assets/swg/header-logo.svg");
+    background-image: url("./assets/svg/header-logo.svg");
     background-size: contain;
     background-repeat: no-repeat;  
     padding: 25px;
@@ -225,22 +225,22 @@ body {
 }
 
 .skill_item:nth-child(1) {
-    background-image: url("./assets/swg/camera.svg");
+    background-image: url("./assets/svg/camera.svg");
     background-size: 62px 50px;
 }
 
 .skill_item:nth-child(2) {
-    background-image: url("./assets/swg/video.svg");
+    background-image: url("./assets/svg/video.svg");
     background-size: 62px 50px;
 }
 
 .skill_item:nth-child(3) {
-    background-image: url("./assets/swg/image.svg");
+    background-image: url("./assets/svg/image.svg");
     background-size: 62px 50px;
 }
 
 .skill_item:nth-child(4) {
-    background-image: url("./assets/swg/mic.svg");
+    background-image: url("./assets/svg/mic.svg");
     background-size: 62px 50px;
 }
 
@@ -397,17 +397,17 @@ body {
 }
 
 .inst {
-    background-image: url("./assets/swg/inst.svg");
+    background-image: url("./assets/svg/inst.svg");
 }
 
 .fb {
-    background-image: url("./assets/swg/fb.svg");
+    background-image: url("./assets/svg/fb.svg");
 }
 
 .tw {
-    background-image: url("./assets/swg/tw.svg");
+    background-image: url("./assets/svg/tw.svg");
 }
 
 .pinterest {
-    background-image: url("./assets/swg/pinterest.svg");
+    background-image: url("./assets/svg/pinterest.svg");
 }
