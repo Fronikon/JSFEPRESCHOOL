@@ -130,7 +130,16 @@ body {
     margin: 0 10px;
 }
 
-.switch_en {
+.radio_input {
+    appearance: none;
+    position: absolute;
+}
+
+.radio_label {
+    cursor: pointer;
+}
+
+.radio_input:checked + .radio_label {
     color: var(--color-gold);
 }
 
