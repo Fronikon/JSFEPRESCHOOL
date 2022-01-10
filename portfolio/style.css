@@ -65,14 +65,17 @@ body {
     cursor: pointer;
 }
 
+button {
+    font-family: inherit;
+    border: 0;
+    cursor: pointer;
+}
+
 .button {
     height: 55px;
     width: 220px;
-    border: 0;
     background-color: var(--color-gold);
-    font-family: inherit;
     font-size: 20px;
-    cursor: pointer;
 }
 
 .button_unactive {
@@ -279,6 +282,16 @@ body {
     align-items: center;
     background-image: url("./assets/img/video-player.jpg");
     height: 705px;
+}
+
+.video_button {
+    position: absolute;
+    top: auto;
+    left: auto;
+    width: 130px;
+    height: 130px;
+    background-image: url("./assets/svg/Play_hover.svg");
+    background-color: transparent;
 }
 
 .prices_items {
