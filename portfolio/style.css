@@ -58,11 +58,21 @@ body {
     transition: 0.3s;
 }
 
+.link:active {
+    color: #a58e47;
+    transition: 0s;
+}
+
 .icon:hover {
     filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
     contrast(87%);
     transition: 0.3s;
     cursor: pointer;
+}
+
+.icon:active {
+    filter: invert(46%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%);
+    transition: 0s;
 }
 
 button {
@@ -76,6 +86,7 @@ button {
     width: 220px;
     background-color: var(--color-gold);
     font-size: 20px;
+    transition: 0.3s;
 }
 
 .button_unactive {
@@ -86,7 +97,11 @@ button {
 
 .button:hover {
     color: var(--color-white);
-    transition: 0.3s;
+}
+
+.button:active {
+    background-color: #a58e47;
+    transition: 0s;
 }
 
 .header_container {
