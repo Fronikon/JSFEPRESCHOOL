@@ -1,7 +1,7 @@
 const hamburgerButton = document.querySelector('.hamburger');
 const adaptiveMenu = document.querySelector('.header_menu');
 const navLinks = document.querySelector('.menu_list');
-const body = document.querySelector('body');
+const body = document.body;
 
 hamburgerButton.addEventListener('click', menuOpenAndClose);
 navLinks.addEventListener('click', closeMenu);
