@@ -80,9 +80,11 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.link:hover {
-    color: var(--color-gold);
-    transition: 0.3s;
+@media (hover: hover) {
+    .link:hover {
+        color: var(--color-gold);
+        transition: 0.3s;
+    }
 }
 
 .link:active {
@@ -90,11 +92,13 @@ body {
     transition: 0s;
 }
 
-.icon:hover {
-    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-    contrast(87%);
-    transition: 0.3s;
-    cursor: pointer;
+@media (hover: hover) {
+    .icon:hover {
+        filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+        contrast(87%);
+        transition: 0.3s;
+        cursor: pointer;
+    }
 }
 
 .icon:active {
@@ -122,8 +126,10 @@ button {
     color: var(--color-gold);
 }
 
-.button:hover {
-    color: var(--color-white);
+@media (hover: hover) {
+    .button:hover {
+        color: var(--color-white);
+    }
 }
 
 .button:active {
@@ -150,7 +156,7 @@ button {
 
 .header_menu {
     margin-left: auto;
-    padding: 0 15px;
+    padding: 0 18px;
 }
 
 .menu_list {
@@ -196,6 +202,7 @@ button {
     width: 50px;
     height: 50px;
     padding: 11px 0 11px 0;
+    margin-right: 4px;
     z-index: 10;
 }
 
@@ -208,9 +215,6 @@ button {
 }
 
 .is_active {
-    position: fixed;
-    top: 20px;
-    right: 65px;
     padding-right: 0;
 }
 
@@ -270,7 +274,6 @@ button {
 
     .is_open {
         right: 0;
-        /* box-shadow: -400px 0 40px rgba(0, 0, 0, 0.5); */
     }
 
     .is_open::before {
@@ -302,10 +305,6 @@ button {
 
     .hamburger {
         display: flex;
-    }
-
-    .hamburger:hover {
-        filter: inherit;
     }
 }
 
@@ -431,7 +430,7 @@ button {
 .section_title::after {
     content: "";
     position: absolute;
-    top: 50%;
+    top: calc(50% - 1px);
     background-color: var(--color-gold);
     width: 500px;
     height: 2px;
@@ -470,7 +469,7 @@ button {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 35px 42px;
+    gap: 35px 40px;
 }
 
 .skill_item {
@@ -492,6 +491,7 @@ button {
 
 .skill_item:nth-child(3) {
     background-image: url("./assets/svg/image.svg");
+    background-size: 66px 55px;
 }
 
 .skill_item:nth-child(4) {
@@ -512,7 +512,8 @@ button {
 
 @media (max-width: 768px) {
     .skills_items {
-        padding-bottom: 40px;
+        padding-bottom: 41px;
+        gap: 35px 42px;
     }
 
     .skill_item {
@@ -552,7 +553,7 @@ button {
     background-image: url("./assets/img/video-player.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    padding: calc(25% + 2px) 50%;
+    padding: calc(25% + 2px) 50% calc(25% + 3px) 50%;
 }
 
 .video_button {
@@ -572,7 +573,7 @@ button {
     }
 
     .video_player {
-        padding: 27% 50%;
+        padding: calc(27% + 1px) 50% calc(27% + 2px) 50%;
         background-image: url("./assets/img/video-player-adaptive.jpg");
         overflow-y: hidden;
     }
