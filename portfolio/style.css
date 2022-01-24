@@ -133,6 +133,7 @@ button {
 }
 
 .button:active {
+    color: var(--color-white);
     background-color: #a58e47;
     transition: 0s;
 }
