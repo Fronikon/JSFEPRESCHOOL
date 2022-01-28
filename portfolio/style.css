@@ -187,16 +187,11 @@ button {
     margin: 0 10px;
 }
 
-.radio_input {
-    appearance: none;
-    position: absolute;
-}
-
-.radio_label {
+.lang_button {
     cursor: pointer;
 }
 
-.radio_input:checked + .radio_label {
+.lang_active {
     color: var(--color-gold);
 }
 
