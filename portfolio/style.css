@@ -120,10 +120,15 @@ button {
     transition: 0.3s;
 }
 
-.button_unactive {
-    background-color: transparent;
+.portfolio_button {
+    background-color: var(--color-black);
     border: 2px solid var(--color-gold);
     color: var(--color-gold);
+}
+
+.button_active {
+    background-color: var(--color-gold);
+    color: var(--color-black);
 }
 
 @media (hover: hover) {

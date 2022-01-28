@@ -1,10 +1,25 @@
-const hamburgerButton = document.querySelector('.hamburger');
+const body = document.body;
 const adaptiveMenu = document.querySelector('.header_menu');
 const navLinks = document.querySelector('.menu_list');
-const body = document.body;
+const hamburgerButton = document.querySelector('.hamburger');
+const portfolioMenu = document.querySelector('.portfolio_menu');
+const portfolioPhoto = document.querySelectorAll('.portfolio_photo');
+const portfolioButton = document.querySelectorAll('.portfolio_button');
 
 hamburgerButton.addEventListener('click', menuOpenAndClose);
 navLinks.addEventListener('click', closeMenu);
+portfolioMenu.addEventListener('click', switchSeason);
+
+function switchSeason(event) {
+    if( event.target.classList.contains('portfolio_button') ) {
+        portfolioButton.forEach( (current) => current.classList.remove('button_active') )
+        event.target.classList.add('button_active')
+
+        portfolioPhoto.forEach( (current, index) => {
+            current.src = `./assets/img/${event.target.dataset.season}/${index + 1}.jpg`;
+        })
+    }
+}
 
 function menuOpenAndClose () {
     hamburgerButton.classList.toggle('is_active');
