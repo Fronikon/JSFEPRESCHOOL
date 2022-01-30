@@ -15,6 +15,12 @@ const buttons = document.querySelectorAll('.button');
 const message = document.querySelectorAll('.message');
 const icon = document.querySelectorAll('.icon');
 
+let lang = 'en';
+let theme = 'dark';
+
+window.addEventListener('load', getLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
+
 const lightThemeArray = [
     body,
     adaptiveMenu,
@@ -37,21 +43,43 @@ navLinks.addEventListener('click', closeMenu);
 hamburgerButton.addEventListener('click', menuOpenAndClose);
 portfolioMenu.addEventListener('click', switchSeason);
 
+function setLocalStorage() {
+    localStorage.setItem('lang', lang);
+    localStorage.setItem('theme', theme);
+}
+
+function getLocalStorage() {
+    if(localStorage.getItem('lang')) {
+        const lang = localStorage.getItem('lang');
+        getTranslate(lang);
+    }
+    if(localStorage.getItem('theme')) {
+        if (localStorage.getItem('theme') == 'light')
+        changeTheme();
+    }
+}
+
 function changeTheme() {
     lightThemeArray.forEach( (current) => {
         current.classList.toggle('light_theme');
     })
+    if (themeSwith.classList.contains('light_theme')) {
+        theme = 'light'
+    } else {
+        theme = 'dark'
+    }
 }
 
-function getTranslate(lang) {
+function getTranslate(currentLang) {
     document.querySelectorAll('[data-i18]').forEach( (current) => {
         if (current.placeholder) {
-            current.placeholder = i18Obj[lang][current.dataset.i18];
+            current.placeholder = i18Obj[currentLang][current.dataset.i18];
             current.textContent = '';
         } else {
-            current.textContent = i18Obj[lang][current.dataset.i18];
+            current.textContent = i18Obj[currentLang][current.dataset.i18];
         }
     })
+    lang = currentLang
 }
 
 function changeLang(event) {
