@@ -135,11 +135,44 @@ button {
 }
 
 .button {
+    position: relative;
+    overflow: hidden;
     height: 55px;
     width: 220px;
     background-color: var(--color-gold);
     font-size: 20px;
     transition: 0.3s;
+    border: 2px solid var(--color-gold);
+    z-index: 2;
+}
+
+.button.light_theme {
+    border: none;
+}
+
+.button::before,
+.button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0 solid;
+    transform: rotate(360deg);
+    z-index: -1;
+    transition: 0.5s ease-in-out;
+}
+
+.button:before {
+    bottom: 0;
+    left: 0;
+    border-color: transparent transparent transparent #a58e47;
+    border-width: 0;
+}
+
+.button:after {
+    top: 0;
+    right: 0;
+    border-color: transparent #a58e47 transparent transparent;
 }
 
 .bg_button.light_theme {
@@ -152,7 +185,6 @@ button {
 
 .portfolio_button {
     background-color: var(--color-black);
-    border: 2px solid var(--color-gold);
     color: var(--color-gold);
 }
 
@@ -171,21 +203,37 @@ button {
     color: var(--color-gold);
 }
 
+
+
 @media (hover: hover) {
     .button:hover {
         color: var(--color-white);
     }
 
-    .button.light_theme:hover {
-        color: var(--color-gold);
-        background-color: var(--color-matte-black);
-        border-color: var(--color-matte-black);
+    .button:hover::before,
+    .button:hover::after{
+        border-width: 50px 220px;
+    }
+
+    .light_theme.button:hover::before,
+    .light_theme.button:hover::after{
+        border-width: 54px 220px;
     }
 }
 
 .button:active {
     color: var(--color-white);
     background-color: #a58e47;
+    transition: 0s;
+}
+
+.button:active::before {
+    border-color: transparent transparent transparent var(--color-matte-black);
+    transition: 0s;
+}
+
+.button:active::after{
+    border-color: transparent var(--color-black) transparent transparent;
     transition: 0s;
 }
 
@@ -311,6 +359,12 @@ button {
     -ms-transform: translateY(-13px) rotate(-45deg);
     -o-transform: translateY(-13px) rotate(-45deg);
     transform: translateY(-13px) rotate(-45deg);
+}
+
+@media (max-width: 830px) {
+    .header_container {
+        gap: 15px;
+    }
 }
 
 @media (max-width: 768px) {
