@@ -18,6 +18,7 @@
 :root {
     --color-gold: #bdae82;
     --color-black: #000;
+    --color-matte-black: #1C1C1C;
     --color-white: #fff;
 }
 
@@ -54,6 +55,11 @@ body {
     background-color: var(--color-black);
 }
 
+body.light_theme {
+    color: var(--color-matte-black);
+    background-color: var(--color-white);
+}
+
 .container {
     max-width: 1440px;
     margin: 0 auto;
@@ -85,11 +91,27 @@ body {
         color: var(--color-gold);
         transition: 0.3s;
     }
+
+    .light_theme .header_container .link:hover {
+        color: var(--color-white);
+    }
 }
 
 .link:active {
     color: #a58e47;
     transition: 0s;
+}
+
+.light_theme .header_container .link:active {
+    color: #fce18f;
+}
+
+.icon {
+    background-repeat: no-repeat;
+}
+
+.icon.light_theme {
+    filter: brightness(0%)
 }
 
 @media (hover: hover) {
@@ -120,10 +142,23 @@ button {
     transition: 0.3s;
 }
 
+.bg_button.light_theme {
+    background-color: var(--color-white);
+}
+
+.hero_content .bg_button.light_theme {
+    box-shadow: 0px 5px 5px rgba( 0, 0, 0, 0.5);
+}
+
 .portfolio_button {
     background-color: var(--color-black);
     border: 2px solid var(--color-gold);
     color: var(--color-gold);
+}
+
+.portfolio_button.light_theme {
+    background-color: var(--color-gold);
+    color: var(--color-matte-black);
 }
 
 .button_active {
@@ -131,9 +166,20 @@ button {
     color: var(--color-black);
 }
 
+.button_active.light_theme {
+    background-color: var(--color-matte-black);
+    color: var(--color-gold);
+}
+
 @media (hover: hover) {
     .button:hover {
         color: var(--color-white);
+    }
+
+    .button.light_theme:hover {
+        color: var(--color-gold);
+        background-color: var(--color-matte-black);
+        border-color: var(--color-matte-black);
     }
 }
 
@@ -143,14 +189,25 @@ button {
     transition: 0s;
 }
 
+.button.light_theme:active {
+    color: var(--color-white);
+    background-color: rgba( 0, 0, 0, 0.8);
+}
+
 .header_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("./assets/img/header-bg.jpg");
+    gap: 35px;
+    padding: 0 24px 0 20px;
+    background-image: url("./assets/img/dark-theme/header-bg.jpg");
     background-repeat: no-repeat;
     background-position: center 0;
     height: 90px;
+}
+
+.header_container.light_theme {
+    background-image: url("./assets/img/light-theme/header-bg.jpg");
 }
 
 .header_logo {
@@ -162,7 +219,6 @@ button {
 
 .header_menu {
     margin-left: auto;
-    padding: 0 18px;
 }
 
 .menu_list {
@@ -195,6 +251,21 @@ button {
     color: var(--color-gold);
 }
 
+.lang_active.light_theme {
+    color: var(--color-white);
+}
+
+.switch_theme {
+    background-image: url("./assets/svg/carbon_sun.svg");
+    background-size: contain;
+    background-repeat: no-repeat;  
+    padding: 20px;
+}
+
+.switch_theme.light_theme {
+    background-image: url("./assets/svg/moon.svg");
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -203,8 +274,7 @@ button {
     width: 50px;
     height: 50px;
     padding: 11px 0 11px 0;
-    margin-right: 4px;
-    z-index: 10;
+    z-index: 15;
 }
 
 .hamburger_line {
@@ -245,6 +315,7 @@ button {
 
 @media (max-width: 768px) {
     .header_container {
+        gap: 30px;
         height: 90px;
         background-position: calc( 100% + 208px ) -30px;
         background-size: auto 620px;
@@ -254,13 +325,17 @@ button {
         position: fixed;
         top: 0;
         right: -620px;
-        z-index: 5;
+        z-index: 10;
         padding: 134px 127px;
         width: 620px;
         height: 100%;
         background-color: var(--color-black);
         transition: 0.5s;
         overflow-y: auto;
+    }
+
+    .header_menu.light_theme {
+        background-color: var(--color-white);
     }
     
     .menu_list {
@@ -277,15 +352,15 @@ button {
         right: 0;
     }
 
-    .is_open::before {
+    body.is_active::before {
         content: '';
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        z-index: -1;
+        z-index: 5;
     }
 
     .menu_link {
@@ -296,12 +371,6 @@ button {
 
     .switch_lang {
         margin-left: auto;
-        padding: 0 10px;
-    }
-
-    .switch_ru {
-        text-align: center;
-        width: 40px;
     }
 
     .hamburger {
@@ -324,15 +393,22 @@ button {
     .header_container {
         background-position: center -30px;
     }
+
+    .header_container {
+        gap: 10px;
+    }
 }
 
 
-
 .hero_container {
-    background-image: url("./assets/img/header-bg.jpg");
+    background-image: url("./assets/img/dark-theme/header-bg.jpg");
     background-position: center -90px;
     background-repeat: no-repeat;
     height: 820px;
+}
+
+.hero_container.light_theme {
+    background-image: url("./assets/img/light-theme/header-bg.jpg");
 }
 
 .hero_content {
@@ -427,6 +503,10 @@ button {
     line-height: 80px;
 }
 
+.section_title.light_theme {
+    color: var(--color-matte-black);
+}
+
 .section_title::before,
 .section_title::after {
     content: "";
@@ -435,6 +515,11 @@ button {
     background-color: var(--color-gold);
     width: 500px;
     height: 2px;
+}
+
+.section_title.light_theme::before,
+.section_title.light_theme::after {
+    background-color: var(--color-matte-black);
 }
 
 .section_title::before {
@@ -632,9 +717,13 @@ button {
 }
 
 .contact_container {
-    background-image: url("./assets/img/contacts.jpg");
+    background-image: url("./assets/img/dark-theme/contacts.jpg");
     background-repeat: no-repeat;
     height: 700px;
+}
+
+.contact_container.light_theme {
+    background-image: url("./assets/img/light-theme/contacts.jpg");
 }
 
 .contact_content {
@@ -660,14 +749,24 @@ button {
     margin-bottom: 40px;
 }
 
+.contact_title.light_theme,
+.contact_content.light_theme ::placeholder {
+    color: var(--color-matte-black);
+}
+
 .message {
-    background-color: #00000080;
+    background-color: rgba( 0, 0, 0, 0.5);
     border: 2px solid var(--color-gold);
     font-family: inherit;
     font-size: 20px;
     line-height: 40px;
     color: var(--color-white);
     padding: 5px 20px;
+}
+
+.message.light_theme {
+    background-color: rgba( 255, 255, 255, 0.5);
+    color: var(--color-matte-black);
 }
 
 .contact_email,
@@ -735,7 +834,6 @@ button {
 
 .footer_link .icon {
     padding: 16px;
-    background-repeat: no-repeat;
 }
 
 .inst {
