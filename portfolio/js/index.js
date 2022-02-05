@@ -182,8 +182,14 @@ function setLocalStorage() {
 
 function getLocalStorage() {
     if(localStorage.getItem('lang')) {
-        const lang = localStorage.getItem('lang');
-        getTranslate(lang);
+        const langs = localStorage.getItem('lang');
+        getTranslate(langs);
+        langButton.forEach( (current) => {
+            current.classList.remove('lang_active')
+            if (current.dataset.lang === lang) {
+                current.classList.add('lang_active')
+            }
+        })
     }
     if(localStorage.getItem('theme')) {
         if (localStorage.getItem('theme') == 'light')
