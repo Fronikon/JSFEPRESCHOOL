@@ -7,6 +7,7 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/ico/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header class="header">
@@ -107,7 +108,28 @@
                 </div>
                 <div class="container video_container">
                     <div class="video_player">
+                        <div class="video_poster"></div>
                         <button class="video_button icon"></button>
+                        <video class="video_window viewer" src="./assets/video/video.mp4"></video>
+                        <div class="video_controls">
+                            <div class="video_icon">
+                                <i class="video_play fa fa-play link"></i>
+                            </div>
+                            <div class="slider_container progress">
+                                <input type="range" name="progress" class="video_progress" min="0" max="100" step="1" value="0">
+                                <span class="slider slider_progress"></span>
+                            </div>
+                            <div class="video_icon">
+                                <i class="video_volum_mute fa fa-volume-up  link"></i>
+                            </div>
+                            <div class="slider_container volume">
+                                <input type="range" name="volume" class="audio_slider" min="0" max="100" step="1" value="30">
+                                <span class="slider slider_volume"></span>
+                            </div>
+                            <div class="video_icon">
+                                <i class="video_fullscreen fa fa-expand link"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
