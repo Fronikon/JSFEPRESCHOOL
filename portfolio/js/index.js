@@ -14,16 +14,24 @@ const sectionTitle = document.querySelectorAll('.section_title');
 const buttons = document.querySelectorAll('.button');
 const message = document.querySelectorAll('.message');
 const icon = document.querySelectorAll('.icon');
+const videoIcon = document.querySelectorAll('.video_icon');
 
-let lang = 'en';
-let theme = 'dark';
-
-window.addEventListener('load', getLocalStorage);
-window.addEventListener('beforeunload', setLocalStorage);
+const videoPlayer = document.querySelector('.video_player');
+const videoPoster = videoPlayer.querySelector('.video_poster');
+const videoButton = videoPlayer.querySelector('.video_button');
+const videoPlay = videoPlayer.querySelector('.video_play');
+const videoViewer = videoPlayer.querySelector('.viewer');
+const progressBar = videoPlayer.querySelector('.video_progress');
+const audioSlider = videoPlayer.querySelector('.audio_slider');
+const audioMute = videoPlayer.querySelector('.video_volum_mute');
+const videoFullscreen = videoPlayer.querySelector('.video_fullscreen');
+const sliderVolume = videoPlayer.querySelector('.slider_volume');
+const sliderProgress = videoPlayer.querySelector('.slider_progress');
 
 const lightThemeArray = [
     body,
     adaptiveMenu,
+    videoButton,
     document.querySelector('.header_container'),
     document.querySelector('.hero_container'),
     document.querySelector('.contact_container'),
@@ -31,17 +39,141 @@ const lightThemeArray = [
     document.querySelector('.contact_content')
 ];
 
+let lang = 'en';
+let theme = 'dark';
+
 icon.forEach( (current) => lightThemeArray.push(current));
 buttons.forEach( (current) => lightThemeArray.push(current));
 sectionTitle.forEach( (current) => lightThemeArray.push(current));
 langButton.forEach( (current) => lightThemeArray.push(current));
 message.forEach( (current) => lightThemeArray.push(current));
+videoIcon.forEach( (current) => lightThemeArray.push(current));
+
+window.addEventListener('load', getLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
 
 langSwitch.addEventListener('click', changeLang);
 themeSwith.addEventListener('click', changeTheme);
 navLinks.addEventListener('click', closeMenu);
 hamburgerButton.addEventListener('click', menuOpenAndClose);
 portfolioMenu.addEventListener('click', switchSeason);
+
+videoButton.addEventListener('click', startVideo);
+videoPlay.addEventListener('click', togglePlay);
+videoViewer.addEventListener('click', togglePlay);
+videoViewer.addEventListener('timeupdate', progress);
+audioSlider.addEventListener('input', handleSliderVolume);
+progressBar.addEventListener('input', handleProgress);
+audioMute.addEventListener('click', toggleMute);
+videoFullscreen.addEventListener('click', openFullscreen);
+document.addEventListener('fullscreenchange', closeFullscreen);
+videoViewer.addEventListener('ended', endedVideo);
+
+function endedVideo() {
+    updateButton('play');
+    videoButton.classList.remove('video_start');
+}
+
+function handleProgress() {
+    sliderProgress.style.background = `linear-gradient(
+        to right,
+        #bdae82 0%,
+        #bdae82 ${progressBar.value}%,
+        #fff ${progressBar.value}%,
+        #fff 100%
+    )`
+    const percentValue = (videoViewer.duration / 100) * progressBar.value;
+    videoViewer.currentTime = percentValue;
+}
+
+function progress () {
+    const percentProgress = (videoViewer.currentTime / videoViewer.duration) * 100;
+    progressBar.value = Math.round(percentProgress)
+    sliderProgress.style.background = `linear-gradient(
+        to right,
+        #bdae82 0%,
+        #bdae82 ${progressBar.value}%,
+        #fff ${progressBar.value}%,
+        #fff 100%
+    )`
+}
+
+function handleSliderVolume() {
+    if (videoViewer.muted) toggleMute();
+    sliderVolume.style.background = `linear-gradient(
+        to right,
+        #bdae82 0%,
+        #bdae82 ${audioSlider.value}%,
+        #fff ${audioSlider.value}%,
+        #fff 100%
+    )`
+    videoViewer.volume = audioSlider.value / 100;
+    if (videoViewer.volume === 0) toggleMute();
+}
+
+function updateButton(button) {
+    if (button === 'play') {
+        videoPlay.classList.toggle('fa-play');
+        videoPlay.classList.toggle('fa-pause');
+    }
+
+    if (button === 'mute') {
+        audioMute.classList.toggle('fa-volume-up');
+        audioMute.classList.toggle('fa-volume-off');
+    }
+
+    if (button === 'fullscreen') {
+        videoFullscreen.classList.toggle('fa-expand');
+        videoFullscreen.classList.toggle('fa-compress');
+    }
+}
+
+function closeFullscreen() {
+    if (!document.fullscreenElement) {
+        updateButton('fullscreen');
+        videoPlayer.classList.toggle('fullscreen');
+    }
+}
+
+function openFullscreen() {
+    if (!document.fullscreenElement) {
+        if (videoPlayer.requestFullscreen) {
+            videoPlayer.requestFullscreen();
+        } else if (videoPlayer.mozRequestFullScreen) {
+            videoPlayer.mozRequestFullScreen();
+        } else if (videoPlayer.webkitRequestFullscreen) {
+            videoPlayer.webkitRequestFullscreen();
+        } else if (videoPlayer.msRequestFullscreen) { 
+            videoPlayer.msRequestFullscreen();
+        }
+        updateButton('fullscreen');
+        videoPlayer.classList.add('fullscreen');
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+function toggleMute() {
+    const statusMute = videoViewer.muted ? false : true;
+    videoViewer.muted = statusMute;
+    updateButton('mute')
+}
+
+function togglePlay() {
+    const method = videoViewer.paused ? 'play' : 'pause';
+    videoViewer[method]();
+    updateButton('play')
+    if (method === 'pause') videoButton.classList.remove('video_start');
+    if (method === 'play') videoButton.classList.add('video_start');
+}
+
+function startVideo() {
+    videoButton.classList.add('video_start');
+    videoPoster.classList.add('video_start');
+    videoViewer['play']();
+    updateButton('play')
+    videoViewer.volume = audioSlider.value / 100;
+}
 
 function setLocalStorage() {
     localStorage.setItem('lang', lang);
@@ -50,8 +182,14 @@ function setLocalStorage() {
 
 function getLocalStorage() {
     if(localStorage.getItem('lang')) {
-        const lang = localStorage.getItem('lang');
-        getTranslate(lang);
+        const langs = localStorage.getItem('lang');
+        getTranslate(langs);
+        langButton.forEach( (current) => {
+            current.classList.remove('lang_active')
+            if (current.dataset.lang === lang) {
+                current.classList.add('lang_active')
+            }
+        })
     }
     if(localStorage.getItem('theme')) {
         if (localStorage.getItem('theme') == 'light')
