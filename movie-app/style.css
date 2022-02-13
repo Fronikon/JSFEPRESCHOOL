@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:root {
+    --color-light-light-blue: #7378c5;
+    --color-light-blue: #373b69;
+    --color-dark-blue: #22254b;
+    --color-white: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--color-dark-blue);
+}
+
+.header_container {
+    height: 80px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: var(--color-light-blue);
+}
+
+.search {
+    font-size: 20px;
+    height: 45px;
+    padding: 0 15px;
+    border: 2px solid var(--color-dark-blue);
+    border-radius: 20px;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+}
+
+.search::placeholder {
+    font-size: 16px;
+    color: var(--color-light-light-blue);
+}
+
+.search:focus {
+    background-color: var(--color-dark-blue);
+}
+
+.main_container {
+    margin: 0 auto;
+    padding: 30px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    min-height: 520px;
+    padding: 465px 15px 15px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgb(182, 1, 182);
+    background-color: var(--color-light-blue);
+    background-image: url(./assets/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg);
+    background-repeat: no-repeat;
+    background-size: 300px 450px;
+    background-position: top;
+}
+
+.card:hover {
+    transition: all 0.3s;
+}
+
+.film_title {
+    word-break: break-all;
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.film_rating {
+    height: 33px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background-color: var(--color-dark-blue);
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(46, 240, 46);
+}
+
+.footer_container {
+    height: 100px;
+    padding: 0 30px;
+    font-size: 40px;
+    background-color: var(--color-light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.school_icon {
+    background-image: url(./assets/svg/rs_school_js.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px 80px;
+}
