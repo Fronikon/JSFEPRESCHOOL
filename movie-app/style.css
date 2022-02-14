@@ -11,16 +11,22 @@ a {
     color: inherit;
 }
 
+a:hover {
+    color: rgb(182, 1, 182);
+}
+
+button:hover {
+    color: rgb(182, 1, 182);
+}
+
 :root {
-    --color-light-light-blue: #7378c5;
     --color-light-blue: #373b69;
     --color-dark-blue: #22254b;
-    --color-white: #ffffff;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    color: var(--color-white);
+    color: #ffffff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -29,28 +35,76 @@ body {
 }
 
 .header_container {
+    position: relative;
     height: 80px;
     padding: 0 30px;
     display: flex;
     align-items: center;
     justify-content: end;
     background-color: var(--color-light-blue);
+    overflow-x: hidden;
+}
+
+.header_container form {
+    display: flex;
+    align-items: center;
 }
 
 .search {
     font-size: 20px;
     height: 45px;
-    padding: 0 15px;
+    min-width: 150px;
+    width: 15%;
+    flex: 1;
+    padding: 0 40px 0 15px;
     border: 2px solid var(--color-dark-blue);
     border-radius: 20px;
     background-color: transparent;
     color: inherit;
     outline: none;
+    margin-right: 10px;
 }
+
+.reset {
+    position: absolute;
+    top: 28px;
+    right: 100px;
+    color: #fff;
+    border: 0;
+    display: block;
+    opacity: 0;
+    width: 25px;
+    border-radius: 50%;
+    background-color: var(--color-light-blue);
+    box-shadow: 0px 0px 5px 1px rgb(182, 1, 182);
+    outline: none;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.search_button {
+    border: 0;
+    padding: 8px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--color-dark-blue);
+    outline: none;
+    box-shadow: 0px 0px 5px 1px rgb(182, 1, 182);
+    font-size: 25px;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.search:focus ~ .reset {
+    opacity: 1;
+} 
 
 .search::placeholder {
     font-size: 16px;
-    color: var(--color-light-light-blue);
+    color: #7378c5;
 }
 
 .search:focus {
@@ -63,31 +117,45 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
 }
 
 .card {
     position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     width: 300px;
     min-height: 520px;
     padding: 465px 15px 15px 15px;
     border-radius: 5px;
-    box-shadow: 0px 0px 20px rgb(182, 1, 182);
+    box-shadow: 0px 0px 15px 5px rgb(182, 1, 182);
     background-color: var(--color-light-blue);
-    background-image: url(./assets/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg);
+    background-image: url(./assets/svg/No-Image-Placeholder.svg);
     background-repeat: no-repeat;
     background-size: 300px 450px;
     background-position: top;
 }
 
-.card:hover {
-    transition: all 0.3s;
+.discription {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    color: #000000;
+    padding: 20px;
+    width: 100%;
+    min-height: 40%;
+    max-height: 100%;
+    background-color: #ffffff;
+    transition: all 0.5s;
+    overflow: auto;
+}
+
+.card:hover .discription{
+    bottom: 0;
 }
 
 .film_title {
-    word-break: break-all;
     display: block;
     font-size: 20px;
     font-weight: 600;
@@ -101,22 +169,41 @@ body {
     background-color: var(--color-dark-blue);
     font-size: 16px;
     font-weight: 400;
-    color: rgb(46, 240, 46);
+    color: greenyellow;
+}
+
+.rating_good {
+    color: greenyellow;
+}
+
+.rating_well {
+    color: orange;
+}
+
+.rating_bad {
+    color: red;
 }
 
 .footer_container {
-    height: 100px;
+    min-height: 80px;
     padding: 0 30px;
-    font-size: 40px;
+    font-size: 20px;
     background-color: var(--color-light-blue);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0 10px;
+    flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 .school_icon {
     background-image: url(./assets/svg/rs_school_js.svg);
     background-repeat: no-repeat;
-    background-size: cover;
-    padding: 30px 80px;
+    background-position: center;
+    background-size: 80px 100px;
+    padding: 20px 40px;
+}
+
+.year {
+    margin-right: auto;
 }
