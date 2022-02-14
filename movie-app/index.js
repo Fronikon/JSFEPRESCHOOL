@@ -17,7 +17,7 @@ function sendForm(e) {
             filmsContainert.removeChild(current)
         })
 
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${searchForm.value}`
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=50a977d70f35998a8bc0d01e3eef3d11&query=${searchForm.value}`
         getData(url);
     };
 }
