@@ -5,6 +5,7 @@ const killsDisplay = box.querySelector('.kills_count');
 const goldBox = box.querySelector('.gold_container');
 const killsBox = box.querySelector('.kills_container');
 const startGame = box.querySelector('.start_game');
+const purpose = box.querySelector('.purpose');
 const control = box.querySelector('.control');
 const pauseMenu = box.querySelector('.game_pause');
 const resume = pauseMenu.querySelector('.resume');
@@ -114,6 +115,7 @@ let gamePause = false;
 let gameOver = false;
 let fasterDuration = false;
 let commonDuration = false;
+let gameMusic = new Audio();
 let resultsLocal = [];
 
 goldDisplay.textContent = countGold
@@ -148,10 +150,16 @@ startGame.addEventListener('click', () => {
     goldBox.style.display = 'inline'
     killsBox.style.display = 'inline'
     control.style.display = 'none'
+    purpose.style.display = 'none'
     spawnPlayer();
     spawnCommon();
     spawnFaster();
     animation();
+
+    gameMusic.src = './assets/audio/game-music.mp3'
+    gameMusic.volume = 0.1
+    gameMusic.loop = 'true'
+    gameMusic.autoplay = true;
 
     let shotInterval;
     let reload = false;
@@ -267,12 +275,17 @@ function spawnProjectile(x, y) {
         y: Math.sin(angle) * 15
     }
 
+    let audio = new Audio();
+    audio.src = './assets/audio/laser-blast.mp3'
+    audio.volume = 0.05
+    audio.autoplay = true;
+
     projectiles.push(
         new Projectile(
             player.x,
             player.y,
             20,
-            'red',
+            'blueviolet',
             velocity
         )
     );
@@ -341,6 +354,11 @@ function animation() {
                 golds.splice(indexGold, 1);
                 countGold += 1
                 goldDisplay.textContent = countGold
+
+                let audio = new Audio();
+                audio.src = './assets/audio/gain-gold.mp3'
+                audio.volume = 0.2
+                audio.autoplay = true;
             }
         })
     }
@@ -386,6 +404,14 @@ function animation() {
                     gameOver = true
                     resume.style.display = 'none'
                     isPause()
+
+                    let audio = new Audio();
+                    audio.src = './assets/audio/game-over.mp3'
+                    audio.volume = 0.05
+                    audio.autoplay = true;
+
+                    gameMusic.pause();
+
                     let obj = {
                         date: getFormateDate(new Date()),
                         kills: countkill,
@@ -415,6 +441,10 @@ function animation() {
                         projectiles.splice(indexProjectile, 1);
                         countkill++;
                         killsDisplay.textContent = countkill;
+                        let audio = new Audio();
+                        audio.src = './assets/audio/kill-enemy.mp3'
+                        audio.volume = 0.2
+                        audio.autoplay = true;
                     }, 0)
                 }
             })
@@ -445,10 +475,12 @@ function isPause () {
         cancelAnimationFrame(animationId);
         pauseMenu.style.display = 'flex'
         gamePause = true;
+        gameMusic.pause()
     } else {
         animation()
         pauseMenu.style.display = 'none'
         gamePause = false;
+        gameMusic.play()
     }
 }
 
@@ -458,10 +490,6 @@ function spawnCommon() {
 
 function spawnFaster() {
     spawnEnemy(20, 'red', 2)
-}
-
-function spawnStronger() {
-    spawnEnemy(40, 'brown', 0.5)
 }
 
 function addInfoResults(date, kills, gold) {

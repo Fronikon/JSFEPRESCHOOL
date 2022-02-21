@@ -58,6 +58,30 @@ body::-webkit-scrollbar {
     font-size: 4em;
     color: black;
     transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.purpose {
+    position: absolute;
+    display: block;
+    top: calc(50% - 150px);
+    left: 50%;
+    font-size: 4em;
+    color: white;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.purpose .kill {
+    color: red;
+}
+
+.purpose .gold {
+    color: yellow;
 }
 
 .start_game:hover {
@@ -81,7 +105,7 @@ body::-webkit-scrollbar {
     padding: 5px;
     margin-right: 10px;
     border: 2px solid black;
-    min-width: 50px;
+    white-space: nowrap;
 }
 
 .game_pause {
