@@ -40,7 +40,7 @@ body::-webkit-scrollbar {
     color: black;
 }
 
-.level_container {
+.kills_container {
     position: absolute;
     display: none;
     top: 10px;
@@ -116,7 +116,7 @@ body::-webkit-scrollbar {
     border: 2px solid white;
 }
 
-.table_record {
+.table_results {
     display: none;
     position: absolute;
     top: 50%;
@@ -152,7 +152,7 @@ body::-webkit-scrollbar {
     transform: translate(-50%);
 }
 
-.record {
+.results {
     display: flex;
     justify-content: space-between;
     gap: 10px;

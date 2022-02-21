@@ -1,17 +1,17 @@
 const box = document.querySelector('.box');
 const canvas = box.querySelector('.canvas');
 const goldDisplay = box.querySelector('.gold_count');
-const levelDisplay = box.querySelector('.level_count');
+const killsDisplay = box.querySelector('.kills_count');
 const goldBox = box.querySelector('.gold_container');
-const levelBox = box.querySelector('.level_container');
+const killsBox = box.querySelector('.kills_container');
 const startGame = box.querySelector('.start_game');
 const control = box.querySelector('.control');
 const pauseMenu = box.querySelector('.game_pause');
 const resume = pauseMenu.querySelector('.resume');
 const restart = pauseMenu.querySelector('.restart');
 const tableButton = pauseMenu.querySelector('.table');
-const tableRecord = box.querySelector('.table_record');
-const tableClose = tableRecord.querySelector('.close');
+const tableResults = box.querySelector('.table_results');
+const tableClose = tableResults.querySelector('.close');
 
 const ctx = canvas.getContext('2d');
 
@@ -108,30 +108,19 @@ const golds = [];
 let animationId;
 let player;
 let countGold = 0;
-let countLevel = 0;
 let countkill = 0;
 let countEnemy = 0;
 let gamePause = false;
 let gameOver = false;
-let enemyDuration = false;
+let fasterDuration = false;
+let commonDuration = false;
+let resultsLocal = [];
 
 goldDisplay.textContent = countGold
-levelDisplay.textContent = countLevel
+killsDisplay.textContent = countkill
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+window.addEventListener('load', getLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
 
 window.addEventListener('resize', () => {
     canvas.width = innerWidth;
@@ -147,20 +136,21 @@ restart.addEventListener('click', () => {
 })
 
 tableButton.addEventListener('click', () => {
-    tableRecord.style.display = 'block';
+    tableResults.style.display = 'block';
 })
 
 tableClose.addEventListener('click', () => {
-    tableRecord.style.display = 'none';
+    tableResults.style.display = 'none';
 })
 
 startGame.addEventListener('click', () => {
     startGame.style.display = 'none'
     goldBox.style.display = 'inline'
-    levelBox.style.display = 'inline'
+    killsBox.style.display = 'inline'
     control.style.display = 'none'
     spawnPlayer();
-    spawnEnemy();
+    spawnCommon();
+    spawnFaster();
     animation();
 
     let shotInterval;
@@ -243,18 +233,21 @@ startGame.addEventListener('click', () => {
     })
 })
 
+function setLocalStorage() {
+    if (resultsLocal.length > 10) {
+        resultsLocal.shift()
+    }
+    localStorage.setItem('results', JSON.stringify(resultsLocal));
+}
 
-
-
-
-
-
-
-
-
-
-
-
+function getLocalStorage() {
+    if(localStorage.getItem('results')) {
+        resultsLocal = JSON.parse(localStorage.getItem('results'))
+        resultsLocal.forEach( (current) => {
+            addInfoResults(current.date, current.kills, current.gold)
+        })
+    }
+}
 
 function spawnPlayer() {
     const x = canvas.width / 2;
@@ -286,8 +279,7 @@ function spawnProjectile(x, y) {
 }
 
 function spawnEnemy(weight, skin, speed) {
-    if (countEnemy <= 10) {
-        countEnemy++
+    if (enemies.length < 100) {
         let x = 0;
         let y = 0;
         const radius = weight;
@@ -394,7 +386,16 @@ function animation() {
                     gameOver = true
                     resume.style.display = 'none'
                     isPause()
-                    console.log('GAME OVER    ' + 'Kills: ' + countkill, '  Golds: ' + countGold)
+                    let obj = {
+                        date: getFormateDate(new Date()),
+                        kills: countkill,
+                        gold: countGold,
+                    }
+                    resultsLocal.push(obj)
+                    
+                    addInfoResults(obj.date, obj.kills, obj.gold)
+
+                    console.log(resultsLocal)
                 }, 0)
                 
             }
@@ -412,19 +413,28 @@ function animation() {
                     setTimeout( () => {
                         enemies.splice(indexEnemy, 1);
                         projectiles.splice(indexProjectile, 1);
-                        console.log('Kill: ' + (++countkill))
+                        countkill++;
+                        killsDisplay.textContent = countkill;
                     }, 0)
                 }
             })
         })
     }
 
-    if (enemyDuration === false) {
+    if (commonDuration === false) {
         setTimeout( () => {
             spawnCommon()
-            enemyDuration = false;
+            commonDuration = false;
         }, 500)
-        enemyDuration = true;
+        commonDuration = true;
+    }
+
+    if (fasterDuration === false) {
+        setTimeout( () => {
+            spawnFaster()
+            fasterDuration = false;
+        }, 2000)
+        fasterDuration = true;
     }
     
     player.draw();
@@ -454,40 +464,13 @@ function spawnStronger() {
     spawnEnemy(40, 'brown', 0.5)
 }
 
-function levelRules() {
-    switch (countLevel) {
-        case 1:
-            spawnCommon(100)
-            break
-        case 2:
-            spawnCommon(80)
-            spawnStronger(20)
-            break
-        case 3:
-            spawnCommon(60)
-            spawnStronger(20)
-            spawnFaster(20)
-            break
-        case 4:
-            spawnCommon(40)
-            spawnStronger(30)
-            spawnFaster(30)
-            break
-        case 5:
-            spawnCommon(20)
-            spawnStronger(40)
-            spawnFaster(40)
-            break
-    }
-}
-
-function addInfoRecord(date, kills, gold) {
-    const recordElement = document.createElement('div');
-    recordElement.classList.add('record');
+function addInfoResults(date, kills, gold) {
+    const resultsElement = document.createElement('div');
+    resultsElement.classList.add('results');
 
     const dateElement = document.createElement('span');
     dateElement.textContent = 'Date: ';
-    recordElement.append(dateElement);
+    resultsElement.append(dateElement);
     
     const dateInfo = document.createElement('span');
     dateInfo.classList.add('info_data');
@@ -496,7 +479,7 @@ function addInfoRecord(date, kills, gold) {
 
     const killsElement = document.createElement('span');
     killsElement.textContent = 'Kills: ';
-    recordElement.append(killsElement);
+    resultsElement.append(killsElement);
 
     const killsInfo = document.createElement('span');
     killsInfo.classList.add('info_kills');
@@ -505,23 +488,22 @@ function addInfoRecord(date, kills, gold) {
 
     const goldElement = document.createElement('span');
     goldElement.textContent = 'Gold: ';
-    recordElement.append(goldElement);
+    resultsElement.append(goldElement);
 
     const goldInfo = document.createElement('span');
     goldInfo.classList.add('info_gold');
     goldInfo.textContent = gold;
     goldElement.append(goldInfo);
 
-    tableRecord.append(recordElement)
+    tableResults.append(resultsElement)
 }
 
-addInfoRecord('123', '123', '123')
+function getFormateDate(date) {
+    let dayOfMonth = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
 
-// function choiceSpawn(sumEnemies) {
-//     if (sumEnemies > 1) {
-//         let number = Math.floor(Math.random() * sumEnemies + 1);
-//         return number;
-//     }
-// }
-
-// choiceSpawn(2)
+    return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+}
