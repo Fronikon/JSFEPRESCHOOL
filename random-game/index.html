@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random-game</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="box">
+        <span class="gold_container">Gold: <span class="gold_count"></span></span>
+        <span class="level_container">level: <span class="level_count"></span></span>
+        <button class="start_game">Press to start</button>
+        <div class="control">
+            <span>Control:</span>
+            <div class="key">Esc</div>
+            <div class="key">W</div>
+            <div class="key">A</div>
+            <div class="key">S</div>
+            <div class="key">D</div>
+            <div class="key">Hold LMB</div>
+        </div>
+        <div class="game_pause">
+            <button class="pause_button resume" title="resume">►</button>
+            <button class="pause_button restart" title="restart">↺</button>
+            <button class="pause_button table" title="table records">⏏</button>
+        </div>
+        <div class="table_record">
+            <span class="table_title">Records</span>
+            <span class="close">✖</span>
+        </div>
+        <canvas class="canvas"></canvas>
+    </div>
+
+    <div class="footer">
+        <span class="made">Made for:</span>
+        <a href="https://rs.school/js-stage0/" target="_blank"><div class="school_icon"></div></a>
+        <span class="year">in 2022</span>
+        <a href="https://github.com/Fronikon" target="_blank" class="author">GitHub</a>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
